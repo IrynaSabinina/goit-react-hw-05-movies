@@ -1,16 +1,22 @@
+import { Routes, Route } from 'react-router-dom';
+import { HomePage } from '../pages/HomePage';
+import { MoviesPage } from '../pages/MoviesPage';
+import { ToastContainer } from 'react-toastify';
+import { Layout } from '../components/Layout/Layout';
+import { NotFound } from '../pages/NotFound';
+import 'react-toastify/dist/ReactToastify.css';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+      <ToastContainer />
+    </>
   );
 };
