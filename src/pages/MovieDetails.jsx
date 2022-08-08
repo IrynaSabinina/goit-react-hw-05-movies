@@ -21,8 +21,6 @@ export const MovieDetails = () => {
       setDetails(data);
     });
   }, [movieId]);
-
-  console.log(details);
   return (
     <>
       <GoHome />
@@ -62,7 +60,7 @@ export const MovieDetails = () => {
               </NavLink>
             </li>
           </ul>
-          <Outlet></Outlet>
+          <Outlet />
         </div>
       )}
     </>

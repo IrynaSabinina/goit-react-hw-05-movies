@@ -36,5 +36,5 @@ export const fethFilmCast = async id => {
 
 export const fetchFilmReviews = async id => {
   const { data } = await moviesApi.get(`/movie/${id}/reviews`);
-  return { data };
+  return data;
 };
