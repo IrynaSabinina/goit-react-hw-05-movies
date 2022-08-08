@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Searchbar } from '../components/Searchbar/Searchbar';
 import { fetchSearh } from '../API/api';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const MoviesPage = () => {
   const [query, setQuery] = useState('');
@@ -10,8 +11,15 @@ export const MoviesPage = () => {
   useEffect(() => {
     if (query === '') {
       return;
+    } else {
+      fetchSearh(query).then(data => {
+        if (data.total_results > 0) {
+          setSearchMovieList(data.results);
+        } else {
+          toast.error('Oops!');
+        }
+      });
     }
-    fetchSearh(query).then(data => setSearchMovieList(data.results));
   }, [query]);
 
   const handleFormSubmit = searchNow => {
@@ -27,8 +35,9 @@ export const MoviesPage = () => {
         <ul>
           {searchMovieList.map(movie => (
             <li key={movie.id}>
-              <Link to={movie.id}>{movie.title}</Link>
+              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
             </li>
+            //   <Outlet></Outlet>
           ))}
         </ul>
       )}

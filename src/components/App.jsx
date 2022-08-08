@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import { Layout } from '../components/Layout/Layout';
 import { NotFound } from '../pages/NotFound';
 import 'react-toastify/dist/ReactToastify.css';
+import { MovieDetails } from 'pages/MovieDetails';
 
 export const App = () => {
   return (
@@ -13,6 +14,8 @@ export const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetails />} />
+
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
