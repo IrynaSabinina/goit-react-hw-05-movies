@@ -1,29 +1,22 @@
 import { useEffect, useState } from 'react';
-import {
-  NavLink,
-  Outlet,
-  useParams,
-  useNavigate,
-  useLocation,
-} from 'react-router-dom';
+import { NavLink, Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchFilmById } from '../API/api';
+import { BackButton } from '../components/BackButton/BackButton';
 
-import { GoHome } from '../components/GoHome/GoHome';
-
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [details, setDetails] = useState(null);
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchFilmById(movieId).then(data => {
       setDetails(data);
     });
   }, [movieId]);
+
   return (
     <>
-      <GoHome />
+      <BackButton />
       {details && (
         <div>
           <img
@@ -66,3 +59,4 @@ export const MovieDetails = () => {
     </>
   );
 };
+export default MovieDetails;

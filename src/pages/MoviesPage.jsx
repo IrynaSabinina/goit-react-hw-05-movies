@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Searchbar } from '../components/Searchbar/Searchbar';
 import { fetchSearh } from '../API/api';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useSearchParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-export const MoviesPage = () => {
+const MoviesPage = () => {
   const [query, setQuery] = useState('');
   const [searchMovieList, setSearchMovieList] = useState([]);
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  console.log(searchParams);
   useEffect(() => {
     if (query === '') {
       return;
@@ -27,6 +29,7 @@ export const MoviesPage = () => {
       return;
     }
     setQuery(searchNow);
+    setSearchParams({ query: searchNow });
   };
   return (
     <>
@@ -35,12 +38,15 @@ export const MoviesPage = () => {
         <ul>
           {searchMovieList.map(movie => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+              <Link to={`/movies/${movie.id}`} state={location}>
+                {movie.title}
+              </Link>
             </li>
-            //   <Outlet></Outlet>
           ))}
+          <Outlet></Outlet>
         </ul>
       )}
     </>
   );
 };
+export default MoviesPage;

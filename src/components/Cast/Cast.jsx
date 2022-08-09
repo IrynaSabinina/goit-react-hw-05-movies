@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fethFilmCast } from '../../API/api';
 
-export const Cast = () => {
+ const Cast = () => {
   const [credits, setCredits] = useState();
   const { movieId } = useParams();
 
@@ -40,3 +40,4 @@ export const Cast = () => {
     </>
   );
 };
+export default Cast
