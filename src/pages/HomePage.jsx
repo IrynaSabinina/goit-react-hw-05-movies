@@ -13,7 +13,7 @@ const HomePage = () => {
 
   return (
     <>
-      <h1>Tanding films</h1>
+      <h1>Tranding films</h1>
       <ul>
         {films.map(film => (
           <li key={film.id}>
