@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchFilmById } from '../API/api';
 import { BackButton } from '../components/BackButton/BackButton';
+import { NotFound } from '../pages/NotFound';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const [details, setDetails] = useState(null);
+  const [details, setDetails] = useState();
   const location = useLocation();
 
   useEffect(() => {
     fetchFilmById(movieId).then(data => {
+      console.log(data.genres);
       setDetails(data);
     });
   }, [movieId]);
@@ -17,7 +19,7 @@ const MovieDetails = () => {
   return (
     <>
       <BackButton />
-      {details && (
+      {details ? (
         <div>
           <img
             width="250"
@@ -55,6 +57,8 @@ const MovieDetails = () => {
           </ul>
           <Outlet />
         </div>
+      ) : (
+        <NotFound />
       )}
     </>
   );

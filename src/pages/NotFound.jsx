@@ -1,5 +1,5 @@
 import { GoHome } from '../components/GoHome/GoHome';
-const NotFound = () => {
+export const NotFound = () => {
   return (
     <>
       <h1>Page Not Found</h1>
@@ -7,4 +7,4 @@ const NotFound = () => {
     </>
   );
 };
-export default NotFound
+// export default NotFound

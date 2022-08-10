@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 // import { MoviesPage } from '../pages/MoviesPage';
 import { ToastContainer } from 'react-toastify';
 import { Layout } from '../components/Layout/Layout';
-// import { NotFound } from '../pages/NotFound';
+import { NotFound } from '../pages/NotFound';
 import 'react-toastify/dist/ReactToastify.css';
 // import { MovieDetails } from 'pages/MovieDetails';
 // import { Cast } from './Cast/Cast';
@@ -15,7 +15,7 @@ const MoviesPageLazy = lazy(() => import('../pages/MoviesPage'));
 const MovieDetailsLazy = lazy(() => import('../pages/MovieDetails'));
 const CastLazy = lazy(() => import('./Cast/Cast'));
 const ReviewsLazy = lazy(() => import('./Reviews/Reviews'));
-const NotFoundLazy = lazy(() => import('../pages/NotFound'));
+// const NotFoundLazy = lazy(() => import('../pages/NotFound'));
 export const App = () => {
   return (
     <>
@@ -63,14 +63,7 @@ export const App = () => {
             />
           </Route>
 
-          <Route
-            path="*"
-            element={
-              <Suspense fallback={<p>Loading...</p>}>
-                <NotFoundLazy />
-              </Suspense>
-            }
-          />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
       <ToastContainer />
