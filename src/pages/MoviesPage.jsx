@@ -6,9 +6,9 @@ import { toast } from 'react-toastify';
 import { GoHome } from '../components/GoHome/GoHome';
 
 const MoviesPage = () => {
-  const [query, setQuery] = useState('');
   const [searchMovieList, setSearchMovieList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
   const location = useLocation();
   console.log(searchMovieList);
   useEffect(() => {
@@ -28,10 +28,6 @@ const MoviesPage = () => {
   }, [query]);
 
   const handleFormSubmit = searchNow => {
-    if (query === searchNow) {
-      return;
-    }
-    setQuery(searchNow);
     setSearchParams({ query: searchNow });
   };
   return (

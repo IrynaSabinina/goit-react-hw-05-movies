@@ -10,10 +10,12 @@ const MovieDetails = () => {
   const location = useLocation();
 
   useEffect(() => {
-    fetchFilmById(movieId).then(data => {
-      console.log(data.genres);
-      setDetails(data);
-    });
+    fetchFilmById(movieId)
+      .then(data => {
+        console.log(data);
+        setDetails(data);
+      })
+      .catch(() => console.log('error'));
   }, [movieId]);
 
   return (
