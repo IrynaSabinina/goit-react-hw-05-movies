@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-
+import PropTypes from 'prop-types';
 export const Searchbar = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
   const handleSearchChange = event => {
@@ -31,4 +31,8 @@ export const Searchbar = ({ onSubmit }) => {
       <button type="submit">Search</button>
     </form>
   );
+};
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
